@@ -1,0 +1,37 @@
+server:
+  port: 18765
+
+spring:
+  application:
+    name: MicServiceTest
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    hostname: ${spring.application.name}
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:8761/eureka
+
+extends:
+    serverName: MICSERVICETEST2
+    url: /getOrder
+
+hystrix:
+  command:
+      default:
+        execution:
+          isolation:
+            thread:
+              timeoutInMilliseconds: 60000
+
+info:
+  app:
+    name: test_1
+    version: 1.0.0
+    time: 2018年03月15日 14:39:05
+  describe: 微服务Demo测试_1
+  home: /
+  author: Claude
+  licensed: MIT Licensed
